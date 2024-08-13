@@ -1,0 +1,16 @@
+pipeline {
+   agent any
+   stages {
+      stage('setup') {
+         steps {
+            browserstack(credentialsId: '91d1cb42-423c-46ed-adba-cb1664df20d5') {
+              // some example test commands ...
+                           sh 'npm install'
+                           sh 'mvn test -P runWe'
+                        }
+                         // Enable reporting in Jenkins
+                         browserStackReportPublisher 'automate'
+         }
+      }
+    }
+  }
